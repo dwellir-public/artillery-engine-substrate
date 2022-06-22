@@ -1,0 +1,15 @@
+.idea
+*.iml
+node_modules
+components
+build
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+._*
+*/._*
+*/*/._*
+*scratch*
+artillery_report*
+coverage/*
+.vscode

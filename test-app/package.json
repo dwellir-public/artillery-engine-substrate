@@ -1,0 +1,14 @@
+{
+  "name": "substrate-perf-test-app",
+  "version": "1.0.0",
+  "description": "Rpc perf app using artillery",
+  "main": "index.js",
+  "scripts": {
+    "test": "artillery run ./script.yml"
+  },
+  "dependencies": {
+    "artillery": "^2.0.0-18",
+    "artillery-engine-substrate": "file:../"
+  },
+  "author": "Ankan <me@theduck.dev>"
+}

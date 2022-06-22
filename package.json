@@ -1,0 +1,22 @@
+{
+  "name": "artillery-engine-substrate",
+  "version": "1.0.0",
+  "description": "Substrate engine for Artillery",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwellir-public/artillery-engine-substrate.git"
+  },
+  "author": "Ankan <me@theduck.dev>",
+  "license": "ISC",
+  "dependencies": {
+    "@polkadot/api": "^8.7.1",
+    "artillery-core": "^4.8.1"
+  },
+  "devDependencies": {
+    "tap": "^16.3.0"
+  }
+}
