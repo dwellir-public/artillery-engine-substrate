@@ -6,6 +6,7 @@ const debug = require('debug')('ws');
 const engineUtil = require('artillery-core/lib/engine_util');
 const ApiPromise = require('@polkadot/api').ApiPromise;
 const WsProvider = require('@polkadot/api').WsProvider;
+const utils = require('./utils');
 
 module.exports = SubstrateEngine;
 
@@ -69,7 +70,7 @@ SubstrateEngine.prototype.step = function (requestSpec, ee) {
 
   if (requestSpec.log) {
     return function (context, callback) {
-      console.log(template(requestSpec.log, context));
+      console.log(utils.template(requestSpec.log, context));
       return process.nextTick(function () {
         callback(null, context);
       });
@@ -87,54 +88,23 @@ SubstrateEngine.prototype.step = function (requestSpec, ee) {
 
 
   if (requestSpec.call || requestSpec.send) {
-    return call(requestSpec.call || requestSpec.send, ee);
+    let spec= requestSpec.call || requestSpec.send;
+    return function (context, callback) {
+      ee.emit('counter', 'ws.messages_sent', 1);
+      ee.emit('rate', 'ws.send_rate');
+      utils.call(context, spec, callback);  
+    }
   }
-
 
   return function (context, callback) {
     return callback(null, context);
   };
 };
 
-
-function call(spec, ee) {
-  return function (context, callback) {
-    ee.emit('counter', 'ws.messages_sent', 1);
-    ee.emit('rate', 'ws.send_rate');
-    let api = context.api;
-    let method = spec.method || spec;
-    let fn = template(method, context);
-    exec(api, fn)
-      .then((response) => {
-        let varName = spec.saveTo || 'data';
-        context.vars[varName] = response;
-        return callback(null, context)
-      }).catch((err) => {
-        debug("err:", err)
-        console.log("err:", err);
-        return callback(err, null);
-      });
-  }
-}
-
-function exec(api, fn) {
-  if (!api) {
-    throw 'api not initialised';
-  }
-
-  if (fn.substring(0, 4) !== "api.") {
-    throw `${method} should start with api.<>`;
-  }
-  try {
-    return eval(fn)
-  } catch (e) {
-    throw `execution of method ${fn} failed with error ${e}`
-  }
-}
-SubstrateEngine.prototype.compile = function (tasks, scenarioSpec, ee) {
+SubstrateEngine.prototype.compile = function (tasks, _scenarioSpec, ee) {
   const config = this.config;
 
-  return function scenario(initialContext, callback) {
+  return function scenario(substrateContext, callback) {
 
     function init(cb) {
       ee.emit('started');
@@ -143,8 +113,8 @@ SubstrateEngine.prototype.compile = function (tasks, scenarioSpec, ee) {
       ApiPromise
         .create({ provider: wsProvider })
         .then((api) => {
-          initialContext.api = api;
-          return cb(null, initialContext);
+          substrateContext.api = api;
+          return cb(null, substrateContext);
 
         }).catch(err => {
           console.error("Init error:", err)
@@ -154,7 +124,7 @@ SubstrateEngine.prototype.compile = function (tasks, scenarioSpec, ee) {
     }
 
 
-    initialContext._successCount = 0;
+    substrateContext._successCount = 0;
 
     const steps = _.flatten([init, tasks]);
 
@@ -167,28 +137,3 @@ SubstrateEngine.prototype.compile = function (tasks, scenarioSpec, ee) {
     });
   };
 };
-
-function template(str, context) {
-  let vars = context.vars;
-  const RX = /{{{?[\s$\w|.]+}}}?/g;
-  let result = str.substring(0, str.length);
-
-  while (result.search(RX) > -1) {
-    let templateStr = result.match(RX)[0];
-    const varNames = templateStr.replace(/{/g, '').replace(/}/g, '').trim().split('.');
-    let varValue = getValue(vars, varNames);
-    if (typeof varValue === 'object') {
-      varValue = JSON.stringify(varValue);
-    }
-    result = result.replace(templateStr, varValue);
-  }
-
-  return result;
-}
-
-function getValue(outer, fields) {
-  if (typeof outer === 'undefined') return '';
-  if (fields.length == 0) return outer;
-
-  return getValue(outer[fields[0]], fields.slice(1))
-}
