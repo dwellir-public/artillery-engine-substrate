@@ -6,11 +6,16 @@
   "scripts": {
     "test": "node test/index.js"
   },
+  "keywords": [
+    "artillery",
+    "substrate",
+    "polkadot"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dwellir-public/artillery-engine-substrate.git"
   },
-  "author": "Ankan <me@theduck.dev>",
+  "author": "Ankan",
   "license": "Apache-2.0",
   "dependencies": {
     "@polkadot/api": "^8.7.1",
