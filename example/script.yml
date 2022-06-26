@@ -2,8 +2,8 @@ config:
   target: "wss://moonriver-rpc.dwellir.com"
   processor: "./functions.js"
   phases:
-    - duration: 5
-      arrivalRate: 2
+    - duration: 3
+      arrivalRate: 1
       name: Engine test phase
   engines:
    substrate: {}

@@ -6,19 +6,20 @@ const SubstrateEngine = require('..');
 
 const script = {
   config: {
-    target: 'some-node'
+    target: 'wss://moonriver-rpc.dwellir.com',
+    phases: [{ duration: 1, arrivalCount: 1 }]
   },
-  scenarios: [{
-    name: 'Get Rpc methods',
-    engine: 'substrate',
-    flow: [
-      {
-        get: {
-          method: 'rpcMethods'
+  scenarios: [
+    {
+      engine: 'substrate',
+      flow: [
+        {
+          call: {
+            method: 'api.rpc.chain.getHeader()'
+          }
         }
-      }
-    ]
-  }]
+      ]
+    }]
 };
 
 test('Engine interface', (t) => {
@@ -27,5 +28,6 @@ test('Engine interface', (t) => {
   const scenario = engine.createScenario(script.scenarios[0], events);
   t.ok(engine, 'Can construct an engine');
   t.equal(typeof scenario, 'function', 'Can create a scenario');
+  scenario();
   t.end();
 });
