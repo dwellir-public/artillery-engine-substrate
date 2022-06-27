@@ -1,6 +1,6 @@
 {
   "name": "artillery-engine-substrate",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Substrate engine for Artillery",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "url": "git+https://github.com/dwellir-public/artillery-engine-substrate.git"
   },
   "author": "Ankan",
-  "license": "Apache-2.0",
+  "license": "MPL-2.0",
   "dependencies": {
     "@polkadot/api": "^8.7.1",
     "artillery-core": "^4.8.1"
