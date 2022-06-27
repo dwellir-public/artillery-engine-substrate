@@ -18,4 +18,4 @@ scenarios:
       - call:
           method: api.rpc.chain.getBlock({{ header.hash }})
           saveTo: block
-      - log: "Current Block Number: {{ block.block.header.number }}"      
+      - log: "Current Block Number: {{ block.block.header.number }}"
