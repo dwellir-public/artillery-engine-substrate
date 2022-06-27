@@ -45,7 +45,7 @@ config:
 
 `config.phases`: Learn more about [load phases](https://docs-nine-inky.vercel.app/docs/guides/guides/test-script-reference#phases---load-phases) in artillery documentation.  
 
-`config.engines`: This needs to be provided with Substrate engine to use the substrate custom engine.  
+`config.engines`: This initializes the artillery Substrate engine.  
   
 
 ### Define your scenario
@@ -159,10 +159,21 @@ async function someComplexCall(userContext, events, done) {
 artillery run my-scenario.yml
 ```
 
+If artillery and engine are installed only in the project, use
+```sh
+$(npm bin)/artillery run script.yml
+```
 ### Generate HTML report
 ```sh
 artillery run --output report.json my-scenario.yml
 artillery report report.json
+```
+
+For non-global installation, use
+```sh
+$(npm bin)/artillery run --output report.json my-scenario.yml
+$(npm bin)/artillery report report.json
+
 ```
 
 ## License

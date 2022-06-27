@@ -21,7 +21,7 @@ async function someComplexCall(userContext, events, done) {
    userContext.api.query.timestamp.now()
   ]);
 
-  console.log(`COMPLEX_CALL >> accountNonce(${ALICE}) ${accountNonce}`);
-  console.log(`COMPLEX_CALL >> last block timestamp ${now.toNumber()}`);
+  userContext.vars.accountNonce = accountNonce;
+  userContext.vars.now = now;
   return done();
 }
