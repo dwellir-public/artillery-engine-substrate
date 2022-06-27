@@ -1,6 +1,6 @@
 # Artillery Engine for perf testing Substrate based nodes
 
-[![npm version](https://badge.fury.io/js/artillery-engine-substrate.svg)](https://badge.fury.io/js/artillery-engine-substrate) ![Publish Node.js Package](https://github.com/dwellir-public/artillery-engine-substrate/actions/workflows/pr.yml/badge.svg)
+[![npm version](https://badge.fury.io/js/artillery-engine-substrate.svg)](https://badge.fury.io/js/artillery-engine-substrate) ![Publish Node.js Package](https://github.com/dwellir-public/artillery-engine-substrate/actions/workflows/deploy.yml/badge.svg)
 
 Load test substrate based nodes with [Artillery.io](https://artillery.io/)
 
