@@ -1,5 +1,5 @@
 config:
-  target: "wss://moonriver-rpc.dwellir.com"
+  target: "wss://westend-rpc.dwellir.com"
   processor: "./functions.js"
   phases:
     - duration: 3
