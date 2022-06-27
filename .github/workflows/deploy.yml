@@ -1,4 +1,4 @@
-name: Deploy artillery-engine-substrate
+name: deploy module
 
 on:
   push:
