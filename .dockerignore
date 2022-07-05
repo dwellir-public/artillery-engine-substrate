@@ -1,0 +1,10 @@
+# Exclude everything by default.
+*
+
+# Explicitly include only the necessary files we want in the Docker image.
+!example
+!test
+!index.js
+!README.md
+!utils.js
+!package*.json
