@@ -6,13 +6,12 @@ Stress test substrate based nodes with [Artillery.io](https://artillery.io/)
 
 Sponsored by [Kusama Treasury](https://kusama.polkassembly.io/motion/456)  
 
-## Documentation
-
-### Motivation
+## Motivation
 We started with looking for a tool to stress test substrate based nodes and previously built a [RPC-perf](https://github.com/dwellir-public/rpc-perf) toolkit. The RPC-perf project served as a good proof of concept but it was lacking in comprehensive workload modelling. 
 
 We chose Artillery because of its modularity and ease of use. We started hacking around it and were able to build this custom engine that is integrated with polkadot.js and makes it easy to script various flows to stress test any substrate based nodes.
 
+## Documentation
 ### Prerequisites
 - node.js version > 14
 - npm > 6
