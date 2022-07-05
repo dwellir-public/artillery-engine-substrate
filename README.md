@@ -2,9 +2,16 @@
 
 [![npm version](https://badge.fury.io/js/artillery-engine-substrate.svg)](https://badge.fury.io/js/artillery-engine-substrate) ![Publish Node.js Package](https://github.com/dwellir-public/artillery-engine-substrate/actions/workflows/deploy.yml/badge.svg)
 
-Load test substrate based nodes with [Artillery.io](https://artillery.io/)
+Stress test substrate based nodes with [Artillery.io](https://artillery.io/)
+
+Sponsored by [Kusama Treasury](https://kusama.polkassembly.io/motion/456)  
 
 ## Documentation
+
+### Motivation
+We started with looking for a tool to stress test substrate based nodes and previously built a [RPC-perf](https://github.com/dwellir-public/rpc-perf) toolkit. The RPC-perf project served as a good proof of concept but it was lacking in comprehensive workload modelling. 
+
+We chose Artillery because of its modularity and ease of use. We started hacking around it and were able to build this custom engine that is integrated with polkadot.js and makes it easy to script various flows to stress test any substrate based nodes.
 
 ### Prerequisites
 - node.js version > 14
@@ -27,9 +34,15 @@ artillery run --output report.json script.yml
 artillery report report.json
 ```
 ### For developers:
-Follow `example/` to get started.
-### Configuration 
+If you are looking to use artillery with substrate engine, you can follow the `example/` to get started.
 
+If you are looking to contribute to the engine, you can fork the repository and send a `Pull Request`. Make sure to add test for your changes and all test pass. 
+
+Following are few ideas about the improvements that can be made to the engine
+- Support batch transaction
+- Improve documentation
+
+### Configuration
 ```yml
 config:
   target: "wss://westend.my-node.xyz"
@@ -178,4 +191,4 @@ $(npm bin)/artillery report report.json
 
 ## License
 
-[MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/)
+[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)

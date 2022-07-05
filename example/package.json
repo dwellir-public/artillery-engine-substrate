@@ -10,5 +10,5 @@
     "artillery": "^2.0.0-18",
     "artillery-engine-substrate": "file:../"
   },
-  "author": "Ankan <me@theduck.dev>"
+  "author": "Dwellir <hello@dwellir.app>"
 }
