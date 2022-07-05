@@ -188,6 +188,13 @@ $(npm bin)/artillery report report.json
 
 ```
 
+### Docker
+```sh
+docker build -t artillery-engine-substrate .
+docker run -ti --rm -v $(pwd)/example:/scripts artillery-engine-substrate run --output /scripts/report.json /scripts/script.yml
+docker run -ti --rm -v $(pwd)/example:/scripts artillery-engine-substrate report /scripts/report.json
+```
+
 ## License
 
 [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
