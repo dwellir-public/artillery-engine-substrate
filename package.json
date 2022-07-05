@@ -15,8 +15,8 @@
     "type": "git",
     "url": "git+https://github.com/dwellir-public/artillery-engine-substrate.git"
   },
-  "author": "Ankan",
-  "license": "MPL-2.0",
+  "author": "Dwellir",
+  "license": "Apache-2.0",
   "dependencies": {
     "@polkadot/api": "^8.7.1",
     "artillery-core": "^4.8.1"
