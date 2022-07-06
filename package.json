@@ -19,9 +19,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@polkadot/api": "^8.7.1",
-    "artillery-core": "^4.8.1",
-    "artillery": "^2.0.0-20",
-    "artillery-engine-substrate": "file:./"
+    "artillery-core": "^4.8.1"
   },
   "devDependencies": {
     "tap": "^16.3.0"
