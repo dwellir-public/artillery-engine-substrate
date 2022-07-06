@@ -180,9 +180,9 @@ $(npm bin)/artillery report report.json
 ```
 ### Alternatively using the engine with docker
 ```sh
-docker build -t artillery-engine-substrate .
-docker run -ti --rm -v $(pwd)/example:/scripts artillery-engine-substrate run --output /scripts/report.json /scripts/script.yml
-docker run -ti --rm -v $(pwd)/example:/scripts artillery-engine-substrate report /scripts/report.json
+docker pull dwellir/artillery-substrate:latest
+docker run -ti --rm -v $(pwd)/example:/scripts dwellir/artillery-substrate run --output /scripts/report.json /scripts/script.yml
+docker run -ti --rm -v $(pwd)/example:/scripts dwellir/artillery-substrate report /scripts/report.json
 ```
 
 ### Further developing the plugin:
