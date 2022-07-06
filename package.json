@@ -1,6 +1,6 @@
 {
   "name": "artillery-engine-substrate",
-  "version": "1.0.6-2",
+  "version": "1.0.7",
   "description": "Substrate engine for Artillery",
   "main": "index.js",
   "scripts": {
