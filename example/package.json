@@ -1,6 +1,6 @@
 {
   "name": "substrate-perf-test-example",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rpc perf app using artillery",
   "main": "index.js",
   "scripts": {
