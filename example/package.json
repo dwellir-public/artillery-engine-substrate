@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "artillery": "^2.0.0-18",
-    "artillery-engine-substrate": "file:../"
+    "artillery-engine-substrate": "^1.0.5"
   },
   "author": "Dwellir <hello@dwellir.app>"
 }

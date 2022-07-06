@@ -188,7 +188,7 @@ $(npm bin)/artillery report report.json
 
 ```
 
-### Docker
+### Using with docker
 ```sh
 docker build -t artillery-engine-substrate .
 docker run -ti --rm -v $(pwd)/example:/scripts artillery-engine-substrate run --output /scripts/report.json /scripts/script.yml
