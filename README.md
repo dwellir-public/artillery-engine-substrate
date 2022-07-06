@@ -32,15 +32,6 @@ artillery run --output report.json script.yml
 ```sh
 artillery report report.json
 ```
-### For developers:
-If you are looking to use artillery with substrate engine, you can follow the `example/` to get started.
-
-If you are looking to contribute to the engine, you can fork the repository and send a `Pull Request`. Make sure to add test for your changes and all test pass. 
-
-Following are few ideas about the improvements that can be made to the engine
-- Support batch transaction
-- Improve documentation
-
 ### Configuration
 ```yml
 config:
@@ -187,13 +178,27 @@ $(npm bin)/artillery run --output report.json my-scenario.yml
 $(npm bin)/artillery report report.json
 
 ```
-
-### Using with docker
+### Alternatively using the engine with docker
 ```sh
 docker build -t artillery-engine-substrate .
 docker run -ti --rm -v $(pwd)/example:/scripts artillery-engine-substrate run --output /scripts/report.json /scripts/script.yml
 docker run -ti --rm -v $(pwd)/example:/scripts artillery-engine-substrate report /scripts/report.json
 ```
+
+### Further developing the plugin:
+If you are looking to use artillery with substrate engine, you can follow the `example/` to get started.
+
+If you are looking to contribute to the engine, you can fork the repository and send a `Pull Request`.  
+
+Few tips that would help
+- The engine logic is in two files, `index.js` and `util.js`.
+- When adding a new functionality, please also add a test for it.
+- To run the tests, use `npm test`.
+
+Few ideas about the improvements that can be made to the engine
+- Support batch transaction
+- Improve documentation
+
 
 ## License
 
