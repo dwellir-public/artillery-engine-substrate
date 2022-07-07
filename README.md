@@ -3,12 +3,12 @@
 
 Stress test substrate based nodes with [Artillery.io](https://artillery.io/)
 
-Sponsored by [Kusama Treasury](https://kusama.polkassembly.io/motion/456)  
+The development work is sponsored by [Kusama Treasury](https://kusama.polkassembly.io/motion/456).  
 
 ## Introduction 
 This project is the continuation of [RPC-perf](https://github.com/dwellir-public/rpc-perf) toolkit. The RPC-perf project served as a good proof of concept but lacked comprehensive workload modelling. 
 
-We chose [Artillery.io](https://artillery.io/) because of its maturity, easy of use, modularity and the capability to use polkadot.js client to generate load.
+We chose [Artillery.io](https://artillery.io/) because of its maturity, ease of use, modularity and the capability to use polkadot.js client to generate load.
 
 This Substrate Engine for Artillery makes it easy to script virtual user flows in yaml and stress test any substrate based node without developing any code.
 
@@ -195,6 +195,6 @@ Few ideas about the improvements that can be made to the engine
 
 ## License and Copyright
 
-Artillery Substrate Engine is Open Source licensed under [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
+Artillery Substrate Engine is Open Source licensed under [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
 ©2022 [Dwellir AB](https://dwellir.com), Authors and Contributors.
