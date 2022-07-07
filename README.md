@@ -15,7 +15,7 @@ This Substrate Engine for Artillery makes it easy to script virtual user flows i
 ## How to use
 
 ### Prerequisites
-- node.js version > 14
+- node.js version > 16
 - npm > 6
 
 ### Installation:
