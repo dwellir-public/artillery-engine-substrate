@@ -169,8 +169,8 @@ artillery run --output report.json my-scenario.yml
 artillery report report.json
 ```
 
-### Running with docker
-In some cases you may need to test from systems without development tools. You can run and get reports with using docker with: 
+### Running with Docker
+In some cases you may need to test from systems without development tools. You can run and get reports with using Docker with: 
 ```sh
 docker run -v $(pwd)/example:/scripts dwellir/artillery-substrate run --output /scripts/report.json /scripts/script.yml
 docker run -v $(pwd)/example:/scripts dwellir/artillery-substrate report /scripts/report.json
@@ -183,7 +183,7 @@ Review the existing plugins in case someone is already working on the required f
 If you are looking to contribute to this engine, you can fork the repository and send a `Pull Request`.
 
 ### Developing
-Please not that:
+Please note that:
 - Code structure and nomenclature follows Artillery.io conventions.
 - The engine logic is in two files, `index.js` and `util.js`.
 - When adding a new functionality, please also add a `test` for it.
