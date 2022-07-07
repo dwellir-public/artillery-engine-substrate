@@ -1,3 +1,6 @@
+# Copyright 2021-2022 Dwellir AB authors & contributors
+# SPDX-License-Identifier: Apache-2.0
+
 config:
   target: "wss://westend-rpc.dwellir.com"
   phases:
