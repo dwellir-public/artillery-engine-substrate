@@ -1,20 +1,23 @@
-# Artillery Engine for perf testing Substrate based nodes
-
+# Artillery Substrate Engine
 [![npm version](https://badge.fury.io/js/artillery-engine-substrate.svg)](https://badge.fury.io/js/artillery-engine-substrate) ![Publish Node.js Package](https://github.com/dwellir-public/artillery-engine-substrate/actions/workflows/deploy.yml/badge.svg)
 
 Stress test substrate based nodes with [Artillery.io](https://artillery.io/)
 
 Sponsored by [Kusama Treasury](https://kusama.polkassembly.io/motion/456)  
 
-## Motivation
-We started with looking for a tool to stress test substrate based nodes and previously built a [RPC-perf](https://github.com/dwellir-public/rpc-perf) toolkit. The RPC-perf project served as a good proof of concept but it was lacking in comprehensive workload modelling. 
+## Introduction 
+This project is the continuation of [RPC-perf](https://github.com/dwellir-public/rpc-perf) toolkit. The RPC-perf project served as a good proof of concept but lacked comprehensive workload modelling. 
 
-We chose Artillery because of its modularity and ease of use. We started hacking around it and were able to build this custom engine that is integrated with polkadot.js and makes it easy to script various flows to stress test any substrate based nodes.
+We chose [Artillery.io](https://artillery.io/) because of its maturity, easy of use, modularity and the capability to use polkadot.js client to generate load.
 
-## Documentation
+This Substrate Engine for Artillery makes it easy to script virtual user flows in yaml and stress test any substrate based node without developing any code.
+
+## How to use
+
 ### Prerequisites
 - node.js version > 14
 - npm > 6
+
 ### Installation:
 - Install artillery and substrate plugin
 ```sh
@@ -22,9 +25,9 @@ npm install -g artillery
 npm install -g artillery-engine-substrate
 ```
 
-### Usage
-- Create a script or copy `example/script-basic.yml` to get started
-- Run the scenarios
+### Quickstart
+- Create a test script or copy `example/script-basic.yml` to get started
+- Run the scenarios 
 ```sh
 artillery run --output report.json script.yml
 ```
@@ -32,6 +35,7 @@ artillery run --output report.json script.yml
 ```sh
 artillery report report.json
 ```
+You can learn more about [Artillery Test Scripts](https://www.artillery.io/docs/guides/guides/test-script-reference) in the documentation.
 ### Configuration
 ```yml
 config:
@@ -46,7 +50,7 @@ config:
 
 `config.target`: The substrate node endpoint (websocket) to connect to.
 
-`config.phases`: Learn more about [load phases](https://docs-nine-inky.vercel.app/docs/guides/guides/test-script-reference#phases---load-phases) in artillery documentation.  
+`config.phases`: Learn more about [load phases](https://www.artillery.io/docs/guides/guides/test-script-reference#phases---load-phases) in artillery documentation.  
 
 `config.engines`: This initializes the artillery Substrate engine.  
   
@@ -108,9 +112,13 @@ scenarios:
         ...
         count: 100
 ```
+### Advanced usage
+It is generally not required to develop any code to run Test Scripts with artillery.
 
-The plugin also enable things that is not easy to script via the yaml file.  
-Let's try to make a multi query operation
+However, the plugin allows using custom javascript functions for complex actions that may not be possible to implement via 
+the yaml test script.
+ 
+Let's look at an example, consider the following multi query operation:
 ```js
 const [{ nonce: accountNonce }, now] = await Promise.all([
    userContext.api.query.system.account(ALICE),
@@ -118,9 +126,7 @@ const [{ nonce: accountNonce }, now] = await Promise.all([
 ]);
 ```
 
-This can be achieved by defining your custom function. Lets look at an example:
-
-Set config.processor with path to the file with custom function.
+Set config.processor with the path to the file with the custom function.
 
 ```yml
 config:
@@ -156,50 +162,39 @@ async function someComplexCall(userContext, events, done) {
 }
 ```
 
-### Run the scenario
+Run the scenario and generate the report:
 
-```sh
-artillery run my-scenario.yml
-```
-
-If artillery and engine are installed only in the project, use
-```sh
-$(npm bin)/artillery run script.yml
-```
-### Generate HTML report
 ```sh
 artillery run --output report.json my-scenario.yml
 artillery report report.json
 ```
 
-For non-global installation, use
+### Running with docker
+In some cases you may need to test from systems without development tools. You can run and get reports with using docker with: 
 ```sh
-$(npm bin)/artillery run --output report.json my-scenario.yml
-$(npm bin)/artillery report report.json
-
-```
-### Alternatively using the engine with docker
-```sh
-docker pull dwellir/artillery-substrate:latest
-docker run -ti --rm -v $(pwd)/example:/scripts dwellir/artillery-substrate run --output /scripts/report.json /scripts/script.yml
-docker run -ti --rm -v $(pwd)/example:/scripts dwellir/artillery-substrate report /scripts/report.json
+docker run -v $(pwd)/example:/scripts dwellir/artillery-substrate run --output /scripts/report.json /scripts/script.yml
+docker run -v $(pwd)/example:/scripts dwellir/artillery-substrate report /scripts/report.json
 ```
 
-### Further developing the plugin:
-If you are looking to use artillery with substrate engine, you can follow the `example/` to get started.
+## Contributing to the Artillery Substrate Engine
+Bare in mind that Artillery is a rich ecosystem with multiple [plugins](https://www.npmjs.com/search?q=artillery-plugin).
+Review the existing plugins in case someone is already working on the required functionality.
 
-If you are looking to contribute to the engine, you can fork the repository and send a `Pull Request`.  
+If you are looking to contribute to this engine, you can fork the repository and send a `Pull Request`.
 
-Few tips that would help
+### Developing
+Please not that:
+- Code structure and nomenclature follows Artillery.io conventions.
 - The engine logic is in two files, `index.js` and `util.js`.
-- When adding a new functionality, please also add a test for it.
+- When adding a new functionality, please also add a `test` for it.
 - To run the tests, use `npm test`.
 
 Few ideas about the improvements that can be made to the engine
-- Support batch transaction
-- Improve documentation
+- Support for [batch transactions](https://polkadot.js.org/docs/api/cookbook/tx#how-can-i-batch-transactions)
+- Documented Examples, including Parachain Specific.
 
+## License and Copyright
 
-## License
+Artillery Substrate Engine is Open Source licensed under [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)
+©2022 [Dwellir AB](https://dwellir.com), Authors and Contributors.

@@ -1,3 +1,6 @@
+// Copyright 2021-2022 Dwellir AB authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 module.exports = { template, call };
 
 function getValue(outer, fields) {
