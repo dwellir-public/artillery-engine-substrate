@@ -18,7 +18,7 @@
   "author": "Dwellir",
   "license": "Apache-2.0",
   "dependencies": {
-    "@polkadot/api": "^8.7.1",
+    "@polkadot/api": "^10.6.1",
     "artillery-core": "^4.8.1"
   },
   "devDependencies": {
